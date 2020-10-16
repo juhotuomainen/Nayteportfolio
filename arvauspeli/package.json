@@ -1,0 +1,15 @@
+{
+  "name": "Arvauspeli",
+  "version": "1.0.0",
+  "description": "Yksinkertainen ja konsolipohjainen arvauspeli Node-tulkille",
+  "main": "arvauspeli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node arvauspeli.js"
+  },
+  "author": "juhotuomainen",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}

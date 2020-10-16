@@ -1,0 +1,69 @@
+<!-- Socket.io -client joka on tehty ilman mitään sovelluskehystä tai apukirjastoa-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>client</title>
+<meta charset="utf-8">
+    <!-- kirjasto löytyy node_modules kansiosta tällä polkumäärityksellä-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        //Luodaan clientin socket joka yhdistetään serveriin
+        const socket = io.connect("http://localhost:3010");
+        // luodaan muuttuja, jossa säilytetään tietoa käyttäjän nykyisestä nimestä.
+        let nykyinenPelaajanNimi = '';
+        //Joka kerta kun 'message_to_client' -tapahtuma saapuu serveriltä
+        //laitetaan data diviin joka id on chat. Lisätään myös vanhat viestit perään
+        socket.on("message_to_client", (data) => {
+            // haetaan elementti, jonka ID chat ja kirjoitetaan viestit siihen (INNER HTML eli tagien, tässä tapauksessa div-e'lementin, sisään).
+             document.getElementById("pelinTulokset").innerHTML = ("<br>" +
+            data.message + document.getElementById('pelinTulokset').innerHTML);
+        });
+        // satunnainenNimi-funktio, joka ottaa vastaan palvelimelta lähetetyn pelaajan nimen
+        socket.on('satunnainenNimi', (satunnaisNimi) => {
+
+            /* haetaan elementti, jonka ID pelaajanNimi ja kirjoitetaan pelaajan nimi siihen (INNER HTML eli tagien, tässä tapauksessa p-e'lementin, sisään). Tieto tästä laitetaan inner HTML--metodin (teksti tagin sisään). Kirjoitetaan ensin document.gelementById, sitten sulkujen sisään heittomerkeissä etsittävä merkkijono eli id ja inner HTML-sanojen jälkeen + ja yhtäsuuruusmerkki. Sen jälkeen kirjoitetaan satunnainenNimi-muuttujan muoto.*/
+            document.getElementById('pelaajanNimi').innerHTML += satunnaisNimi;
+
+            // Tallennetaan pelaajan nimi nykyinenPelaajanNimi-muuttujaan
+            nykyinenPelaajanNimi = satunnaisNimi;
+
+
+        });
+        // Kutsutaan funktiota arvoSatunnaisnimi
+        socket.emit('arvoSatunnaisnimi');
+        // arvaaLuku-funktio, joka ottaa vastaan palvelimelta lähetetyn pelaajan nimen
+        
+        // kutsutaan arvaaLuku-funktiota
+        
+
+        // Voiton näyttö käyttöliittymässä
+        function sendMessage() {
+            //otetaan teksti-inputin sisältö talteen
+            const contents = document.getElementById("message_input").value;
+            //emitoidaan tapahtuma 'message_to_server' jolla data lähtee avain-arvo parina
+            socket.emit('message_to_server', {
+                message: contents
+            });
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <p id="pelaajanNimi">Nimesi on
+    </p>
+    <!-- Arvattavan luvun sisältävä kappale. -->
+    
+
+    <input type="text" id="message_input" />
+    <button onclick="sendMessage()">Arvaa luku</button>
+    <!-- chattiviestit tulevat tähän-->
+    <!-- Pelin otsikko Pelin tulokset. Tämä helpottaa sivun hahmottamista niin näkeviltä käyttäjiltä kuin henkilöiltä, joilla on jokin haaste tai vamma. -->
+<h2>Pelin tulokset</h2>
+<div id="pelinTulokset">
+</div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!-- Sanakirjan sanojen näyttösivu. Esimerkkiä on muokattu tilanteeseen sopivaksi osoitteesta https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html. -->
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<title> Sanakirjasovellus | Tulossivu </title>
+<!-- JavaScript-koodi, joka hakee sanan käyttäjän syöttämien ehtojen mukaan. -->
+<script type="text/javascript">
+function haeSanaEn() {
+const form = document.createElement("form");
+document.body.appendChild(form);
+form.method = "POST";
+form.action = "./sanafi"
+const data = document.createElement("input");
+data.name = "sana";
+data.value = document.getElementById("sanahaku").value;
+form.append(data);
+form.submit();
+}
+
+function haeSanaFi() {
+const form = document.createElement("form");
+document.body.appendChild(form);
+form.method = "POST";
+form.action = "./sanaen"
+const data = document.createElement("input");
+data.name = "sana";
+data.value = document.getElementById("sanahaku").value;
+form.append(data);
+form.submit();
+}
+</script>
+</head>
+<body>
+
+<!-- Lähdekielen valitsemiseen tarkoitettu yhdistelmäruutu) -->
+<label for="sanahaku">Syötä haettava sana</label>
+<input type="text" id ="sanahaku" name="sanahaku" />
+<!-- Painikkeet, joista vaihdetaan hakukieltä. -->
+<!-- Englanti -->
+<button onclick="haeSanaEn()" aria-label="Hakukieli englanti">Suomesta Englanniksi</button>
+<!-- Suomen kieli -->
+<button onclick="haeSanaFi()" aria-label="Hakukieli suomi">Englannista Suomeksi</button>
+<h2>Haun tulos sanalle <%=sana%></h2>
+<p>
+<% if(tulos.sana) { %>
+Sana: <%=tulos.sana%><br>
+Kuvaus: <%=tulos.kuvaus%>
+<% } else { %>
+Haettua sanaa ei löytynyt sanakirjasta.
+<% } %>
+</p>
+</body>
+</html>

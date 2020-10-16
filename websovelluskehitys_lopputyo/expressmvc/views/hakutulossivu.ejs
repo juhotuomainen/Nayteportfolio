@@ -1,0 +1,80 @@
+<!-- Sanakirjan sanojen näyttösivu. Esimerkkiä on muokattu tilanteeseen sopivaksi osoitteesta https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html. -->
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<title> Sanakirjasovellus | hakutulossivu </title>
+<!-- JavaScript-koodi, joka hakee sanan käyttäjän syöttämien ehtojen mukaan. -->
+<script type="text/javascript">
+// Metodi, joka palauttaa suomenkielistä sanaa vastaavaan englanninkieliseen.
+// function searchWordFi runko. Se ei varsinaisesti käsittele dataa (vastaus).
+function searchWordFi () {
+// Luodaan muuttuja lomake, jossa HTML-sivua pidetään tallessa.
+const lomake =document.createElement ("form");
+// Määritellään metodi, jota käytetään datan lähettämiseksi. Se on post, koska sanakirja_controller.js odottaa sitä parametrina.
+lomake.method = 'post';
+// Määritellään toiminnaksi reitti (eli merkkijono) sana_fi.
+lomake.action='/sanafi';
+/* Luodaan uusi elementti (HTML), jolla on avain ja arvo. Esimerkissä kummankin tekstinä on tulos. Huomattavaa on se, ettei tässä luoda varsinaisesti näkyvää elementtiä vaan käyttäjälle näkymätön lomake, jolla pystytään lähettämään get-pyyntö palvelimelle. */
+const tulos = document.createElement("input");
+// annetaan nimmi-ominaisuuden (property) arvo. Sanaakirja_controller.js olettaa, että kyseessä on  avain-arvo -pareja sisältävä olio. Tieto lähtee kulkemaan eteenpäin JSON-muodossa (JavaSCript object notation). Se on merkkijono. 
+tulos.name = 'sana';
+/* Määritellään tulos-muuttujan avaimen value arvoksi merkkijono, joka on halutun html-elementin (tässä tapauksessa sanan hakukentän) id (eli sanahaku). Tieto haetaan document.getElementByID-metodilla, jonka parametriksi tulee edellisessä virkkeessä mainittu id  ja koko toimenpide ketjutetaan lopuksi value-ominaisuudelle, jotta arvoksi saadaan haluttu iID.*/
+tulos.value = document.getElementById("sanahaku").value;
+/* Asetetaan tulos-elementti lomakkeen lapseksi. Lisätään se llomakkeen lapsielementiksi appendChiild-metodilla, jota kutsutaan lomake-muuttujan kautta. KÄytännössä ensim kirjoitetaan lomake.appendChild, minkä jälkeen sulut ja niiden sisään tulos-muuttujan nimi. */
+lomake.appendChild(tulos);
+// Kutsutaan lomakkeen submit-metodia lomake-muuttujan kautta. Sille ei tarvitse antaa mitään parametreja. Tämä koodirivi lähettää tiedon palvelimelle.
+lomake.submit();
+} 
+
+// function searchWordEn runko. Se ei varsinaisesti käsittele dataa (vastaus).
+function searchWordEn () {
+// Luodaan muuttuja lomake, jossa HTML-sivua pidetään tallessa.
+const lomake =document.createElement ("form");
+// Määritellään metodi, jota käytetään datan lähettämiseksi. Se on post, koska sanakirja_controller.js odottaa sitä parametrina.
+lomake.method = 'post';
+/* Määritellään reitti (eli viittaus sanakirjaroute.js-tiedostoon) kutsumalla action--metodia lomake-olion kautta. Arvoksi annetaan /sanaen-merkkijono. Koodia voi testata esimerkiksi menemällä CURLilla tai Postmanilla osoitteeseen http://localhost:3000/sanakirja/sanaen ja tekemällä sinne POST-http-pyynnön. */
+lomake.action='/sanaen';
+/* Luodaan uusi elementti (HTML), jolla on avain ja arvo. Esimerkissä kummankin tekstinä on tulos. Huomattavaa on se, ettei tässä luoda varsinaisesti näkyvää elementtiä vaan käyttäjälle näkymätön lomake, jolla pystytään lähettämään get-pyyntö palvelimelle. */
+const tulos = document.createElement("input");
+// annetaan nimmi-ominaisuuden (property) arvo. Sanaakirja_controller.js olettaa, että kyseessä on  avain-arvo -pareja sisältävä olio. Tieto lähtee kulkemaan eteenpäin JSON-muodossa (JavaSCript object notation). Se on merkkijono. 
+tulos.name = 'sana';
+/* Määritellään tulos-muuttujan avaimen value arvoksi merkkijono, joka on halutun html-elementin (tässä tapauksessa sanan hakukentän) id (eli sanahaku). Tieto haetaan document.getElementByID-metodilla, jonka parametriksi tulee edellisessä virkkeessä mainittu id  ja koko toimenpide ketjutetaan lopuksi value-ominaisuudelle, jotta arvoksi saadaan haluttu iID.*/
+tulos.value = document.getElementById("sanahaku").value;
+/* Asetetaan tulos-elementti lomakkeen lapseksi. Lisätään se llomakkeen lapsielementiksi appendChiild-metodilla, jota kutsutaan lomake-muuttujan kautta. KÄytännössä ensim kirjoitetaan lomake.appendChild, minkä jälkeen sulut ja niiden sisään tulos-muuttujan nimi. */
+lomake.appendChild(tulos);
+// Kutsutaan lomakkeen submit-metodia lomake-muuttujan kautta. Sille ei tarvitse antaa mitään parametreja. Tämä koodirivi lähettää tiedon palvelimelle.
+lomake.submit();
+} 
+
+</script>
+</head>
+<body>
+
+<!-- Lähdekielen valitsemiseen tarkoitettu yhdistelmäruutu) -->
+
+<label for="sanahaku">Syötä haettava sana</label>
+<input type="text" id ="sanahaku" />
+<!-- Painikkeet, joista vaihdetaan hakukieltä. -->
+<!-- Englanti -->
+<button onclick="searchWordEn()" type="submit" aria-label="Hakukieli englanti">Englanti</button>
+<!-- Suomen kieli -->
+<button onclick="searchWordFi()" type="submit" aria-label="Hakukieli suomi">Suomii</button>
+<!-- EJS-koodia, jolla tulostetaan sana ja sille  löytyneet vieraskieliset vastineet. Käytetään if-lausetta. Jos result-muuttujan arvo on null, tulostetaan asianmukainen virheilmoitus- Muutoin tulostetaan sanan tiedot asiallisesti kuvaruduulle. Tässä ei käytetä %=-tagia EJS-koodin alussa, koska ei tulosteta vain yhtden muuttujan arvoa. EJS-kooldin lopuksi kirjoitetaan suurempi kuin -merkki. Käytännössä veertailu tehdään kirjoittamalla if ja sulkuihin lause sana (sana-muuttuja)!== (ei ole, suyora negaatio) null (mitätön/tyhjä arvo). -->
+<% if (locals.sana) {
+%>
+<h2> Hakutulokset hakusanalle <%= sana%></h2> 
+<!-- EJS-koodia: Jos hakutuloksen sana-ominaisuus ei ole null (suora yhtäkläisyys), sana ja sen kuvaus (eli olion ominaisuudet sana ja kuvaus) tulostetaan. Muutoin tulostetaan backendin lähettämä virheilmoitus. -->
+<% if (locals.hakutulos.sana) {
+%>
+<p> <%= hakutulos.sana %>, <br /> kuvaus: <%= hakutulos.kuvaus %> </p>
+<% } else { %>
+<!-- Tuloksen sisältävä kappale. Tieto on hakutulos-muuttujassa, jota kutsutaan hakutulos-muuttujan kautta. -->
+<p> <%= hakutulos %> </p>
+// Tulostetaan virheviesti konsoliin.
+// ei kirjoiteta tähän koodia esimerkiksi virheilmoituksen näyttämiseksi, koska se saattaisi hämmentää käyttäjää.
+<% } 
+} 
+%>
+</body>
+</html>

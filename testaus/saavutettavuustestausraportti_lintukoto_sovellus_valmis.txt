@@ -1,0 +1,258 @@
+Lintukoto-sovelluksen saavutettavuustestausraportti
+Yleistä testauksesta
+-Testit teki Lintukoto-ryhmän jäsen (koodari/saavutettavuustestaaja) Juho Tuomainen 10.3-11.3.2020. Testeihin ei valitettavasti ollut suunnitelmaa valmiina, koska testaaja ei tehnyt sitä, kuinka sellainen tulisi tehdä. Hän luotti ruudunlukuohjelmien havainnointikykyyn, WAVE-työkaluun ja omaan havainnointikykyynsä. Testauksen määrittely oli haastavaa myös siksi, että testaaja teki sitä ensimmäistä kertaa tuotetta testatessaan. Raporttia on pääivitettiin 23.3.2020 minkä jälkeen se sisältää koko sovelluksen tiedot. Raporttia tarkennettiin vielä 22.4.2020, jolloin se sisältää myös lyhyen loppuyhteenvedon testauksesta.
+-Testeissä on testattu pääpiirteittäin sovelluksen toiminta NVDA:lla (2019.1.1) ja JAWSilla (versio 2018.1811.30) pääasiassa 64-bittisen Mozilla Firefoxin versiolla 73.0.1 ja todettu toimivaksi. Testaukseen on käytetty monia eri tapoja: ruudunlukuohjelman puhekonsolia (NVDA:n "Puheen tarkastelu"-ominaisuus) ja eri liikkumismuotoja (nuolinäppäimet, Sarkain/Vaihto+Sarkain-näppäinyhdistelmä sekä ruudunlukuohjelman omat, tilanteeseen sopivat näppäinkomennot, esimerkiksi lomakesäätimien välillä liikkumiseen tarkoitetut näppäinkomennot). Seuraavassa raportissa testitulokset on esitelty siten, että ensin on manuaalinen havainnointiosuus ja sitten WAVE-työkalulla tehty testausosuus ("WAVE-analyysi"). Manuaalisessa havainnointiosiossa on ensin kaikkiin sivuihin liittyvät havainnot ja sen jälkeen sivukohtaiset testitulokset (Kirjautumis-, Kalenteri-, Aktiiviset kurssit-, Suoritetut kurssit- ja Asetukset-sivu). Siinä on esitetty myös ruudunlukuohjelmakohtaisia tulkintaeroja aina, kun niitä on havaittu. "WAVE-analyysi" -osan tulokset on myös jaoteltu sivukohtaisesti lähes samoin kuin manuaalisen havainnointiosan tulokset, mutta kaikkia sivuja koskevia havaintoja ei ole ennen sivukohtaisia testituloksia.
+
+Manuaalinen havainnointiosuus
+Yleiset, kaikkiin sivuihin liittyvät toimivat asiat sekä ongelmat
+-Kaikilla sivuilla oleva navigointipalkki on saavutettava.
+-"(Current") (nykyinen)-merkintä pysyy edelleen kalenteri-sivussa, vaikka ruudunlukuohjelman käyttäjä olisi vaihtanut sivun toiseen (kuten esimerkiksi "Aktiiviset kurssit" -sivuun. Tämä hämmentää ruudunlukuohjelman käyttäjää (keskitason saavutettavuusbugi)
+-Kun käyttäjä on kirjautunut sisään, navigaatiopalkissa näkyy edelleen "Kirjaudu sisään" -linkki, jonka voisi vaihtaa muotoon "Kirjaudu ulos". Tämä näkyi toisinaan Mozilla Firefoxin versiossa 73.0.1, mutta Google Chromen uusimmalla versiolla JAWSia käytettäessä "Kirjaudu sisään" -painike näkyy edelleen samannimisenä käyttäjän kirjautuessa sisään -> vaikea, monimutkainen ja kriittinen ongelma 
+-Henkipöllön ikonia ei pääse aktivoimaan näppäimistöllä ruudunlukuohjelmaa käytettäessä, koska ruudunlukuohjelman käyttäjä ei tiedä sen olevan henkipöllö.
+
+Kirjautumissivun tulokset
+-Kaikki säätimet olivat saavutdettavia JAWSilla. Siinä ilmeni kuitenkin joitakin pieniä saavutettavuusongelmia.
+-Ongelmat:
+--JAWS:
+---Kun käyttäjä on kirjoittanut käyttäjätunnuksen ja siirtynyt käyttäjätunnus-kentästä salasana-kenttään sarkain-näppäimellä, JAWS ilmoittaa "Lähetä painike" eikä "Salasana password edit", vaikka sen pitäisi ilmoittaa siitä. Tämä hämmentää ruudunlukuohjelman käyttäjää. Ongelma ei esiinny liikuttaessa nuolinäppäimillä säätimien (käyttäjätunnus- ja salasana-kentät sekä Lähetä-painike) välillä.
+---JAWS lukee Käyttäjätunnus-kentän kummallisesti: Sarkaimella siirryttäåessä kenbtän kohdalle (joko lomaketila-toiminnon ollessa päällä tai pois päältä) se ilmoittaa melko selkeästi "Käyttäjätunnus edit" (käyttäjätunnus muokattava). Tätä ilmoitusta ei anneta nuolinäppäi millä liikuttaessa, mikä hämmentää ruudunlukuohjelman käyttäjää.
+--NVDA:
+---Koska <label>-elementtejä on käytetty todennäköisesti tuskin lainkaan sivulla (tarkennukset selvisivät WAVE-analyysista), käyttäjä hämmentyy hieman liikkuessaan sovelluksessa joko ruudunlukuohjelman lomakekentän navigointikomennoilla, nuolinäppäimillä tai sarkain/SHIFT+Sarkain-näppäinyhdistelmällä, sillä "Käyttäjätunnus" ja "salasa"-kenttien yhteys niiden yläpuolella oleviin teksteihin jää epäselväksi. Sen vuoksi NVDA ei lue kenttiä oikein.
+
+Kalenteri-sivun tulokset
+-Testattu NVDA:n versiolla 2019.1.1 ja JAWSin versiolla 2018.1811.30.
+-Näyte Kalenteri-sivusta NVDA:lla (Tyhjä tarkoittaa rivinvaihtoa). Huomaa myös, että ennen Tänään-sanaa ja sen jälkeen on NVDA:n mukaan kaksi nimeämätöntä painiketta, mikä sotkee ruudunlukuohjelman käyttäjää ja aiheuttaa sekaannusta.
+"11
+työkalurivi  napsautettava
+painike
+Tänään
+napsautettava
+09 - 15 Maaliskuu 2020 navigaatio kiintopiste 
+painike
+Maaliskuu 2020
+napsautettava
+painike
+Tänään
+työkalurivi loppu
+11
+tyhjä
+ taulukko  jossa 3 riviä ja 7 saraketta 
+rivi 2  sarake 1 napsautettava
+Ma
+linkki
+9
+sarake 2 napsautettava
+Ti
+linkki
+10
+sarake 3 napsautettava
+Ke
+linkki
+11
+sarake 4 napsautettava
+To
+linkki
+12
+sarake 5 napsautettava
+Pe
+linkki
+13
+sarake 6 napsautettava
+La
+linkki
+14
+sarake 7 napsautettava
+Su
+linkki
+15
+rivi 3  sarake 1 napsautettava
+ 
+sarake 2 napsautettava
+ 
+sarake 3 napsautettava
+ 
+sarake 4 napsautettava
+...
+taulukko loppu
+"
+Viikonpäivät jatkuvat aina seitsemänteen sarakkeeseen asti
+
+-Seuraavassa, NVDA:n Puheen Tarkastelu -työkalulla otetussa tekstikaappauksessa on pitkä lista tunteja, jotka hämmentävät ruudunlukuohjelman käyttäjää:
+"
+14.15
+0.00
+tyhjä
+1.00
+tyhjä
+2.00
+tyhjä
+3.00
+tyhjä
+4.00
+tyhjä
+5.00
+tyhjä
+6.00
+tyhjä
+7.00
+tyhjä
+8.00
+tyhjä
+9.00
+tyhjä
+10.00
+tyhjä
+11.00
+tyhjä
+12.00
+tyhjä
+...
+"
+Vuorokausilukemat jatkuvat aina 23.00:aan asti
+
+-Näytteestä havaitaan, että kalenteri-näkymä on erittäin epäselvä. Siinä on NVDA:n mukaan taulukkoa. Ensimmäisessä on seitsemän saraketta ja kolme riviä, kun taas toisen on seitmän saraketta ja 50 riviä. Kolmannessa, työkalurivin sisältävässä taulukossa on 0 riviä ja 0 saraketta ja neljännessä, tehtävät sisältävässä taulukossa ei ole lainkaan rivi- tai sarakemäärää.  Tämä taulukko sisältää tehtävälistan, ja seuraavassa on pieni näyte siitä, miten NVDA lukee taulukon nuolinäppäimillä liikuttaessa:
+"
+taulukko
+ muokattavissa
+Ohjelmointi
+sarake 1 muokattavissa
+tehtävät 63 ja 43
+ muokattavissa
+Tietokannat
+ muokattavissa
+Tee tehtävä 13
+rivi 2 muokattavissa
+Tietokannat 2
+ muokattavissa
+Tee tehtävät 6, 7, 8
+rivi 3 muokattavissa
+Ohjelmointi 2
+ muokattavissa
+Ohjelmointi tehtävä 5 ja 6
+rivi 4 muokattavissa
+Tietokannat 3
+ muokattavissa
+Tee tehtävä 41
+rivi 5 muokattavissa
+Tietokannat 2 3
+ muokattavissa
+Tee tehtävät 9, 10, 11
+...
+taulukko loppu
+"
+--Näytteestä ei selviä, mitkä tehtävät kuuluvat mihinkin päivämäärään tai kellonaikaan, minkä vuoksi näkövammaisen ruudunlukuohjelman käyttäjän on erittäin haastavaa käyttää sovellusta
+-Lisäksi aivan sivun alalaidassa on sekä JAWSin että NVDA:n tunnistama säädin, josta NVDA ilmoittaa sen olevan "clipboard  muokattava  monirivinen" eli monirivinen säädin, jonka tekstinä on clipboard. Tämä hämmentää näkövammaista ruudunlukuohjelman käyttäjää, sillä englanninkielinen, tavalliselle käyttäjälle mitäänsanomaton clipboard-sana on suomenkielisen tekstin seassa. NVDA ei tunnista clipboard-säädintä sarkainta käytettäessä, vaan kohdistud hyppää tehtävät sisältävän taulukon neljännelle riville, mikä hämmentää näkövammaista ruudunlukuohjelman käyttäjää
+
+-JAWS:
+--Sekavuus jatkuu myös JAWSin versiota 2018.1811.30 käytettäessä:
+--JAWSin mukaan sivula on vain yksi taulukko, jossa on kaksi saraketta ja 11 riviä, mikä eroaa NVDA:n vastaavasta luvusta. Lisäksi taulukkokomennot, kuten seuraavalle riville siirtävä ALT+CTRL+Alanuoli ja edelliselle riville siirtävä ALT+CTRL+Ylänuoli eivät toimi, sillä JAWS ei tunnista taulukon soluja kunnolla vaan ilmmoittaa komentoja käytettäessä "top of column" eli sarakkeen alku ja "bottom of column" eli sarakkeen loppu
+--Lisäksi JAWS ilmoittaa grid-elementtejä. Sivulla on esimerkiksi grid-elementti, jossa on 2 saraketta ja 11 riviä
+--Myös JAWS tunnistaa clipboard-elementin, mutta se sanoo tekstin siirryttäessä elementin kohdalle eikä kerro mitään sen yhteydestä muokkauskenttään, jolloin näkövammainen ruudunlukuohjelman käyttäjä ei tiedä, että clipboard-tekstiin liittyy muokkauskenttä- JAWS tunnistaa muokkauskentän siirryttäessä sen kohdalle nuolinäppäimellä. Jos painaa sarkainta ja kohdistus siirtyy clipboard-säätimeen, JAWS kertoo "clipboard edit" eli clipboard-muokkattava
+-Yhteistä kummallekin ruudunlukuohjelmalle
+--Tehtävien lisäys onnistuu, mutta tehtävän löytäminen vaikeaa (joutuu käyttämään Etsi-toimitnoa, CTRL+F tai CTRL+INSERT+F-näppäinkomennolla) ja muistaa tehtävän nimi ennen sen löytämistä.a
+--Näkymässä ei ollut lainkaan otsikkotasoja, mikä vaikeutti sen käyttöä (
+kriittinen saavutettavuusongelma)
+
+Yhteenveto kalenterinäkymästä: Sekä JAWS 2018.:n versiolla 2018.1811.30 että NVDA:n vesiolla 2019.1.1 testattuna Kalenteri-näkymä on erittäin sekava: työkalurivi on taulukon sisällä, eivätkä sivustolla olevat neljä taulukkoa ole ollenkaan selkeitä, sillä ruudunlukuohjelma ei mitä todennäköisimmin osaa viestiä Angularin kanssa asianmukaisesti. Lisäksi englanninkielisiä tekstiä pisäisi korvata suomenkielisillä vastineilla, kuten Tehtävän luonnin yhteydessä oleva "Close"-painikkeen teksti muotooN "Sulje"
+
+Aktiiviset kurssit-sivun tulokset
+-Yleistä:
+--Selkeämpi kuin kalenteri-näkymä.  Sekä JAWS että NVDA havaitsevat listan, jossa on kaksi kohdetta eli aktiivista kurssia: Ohjelmointi ja Web-sovelluskehitys). Myös listan kohdalle siirtyminen onnistuu kummallakin ruudunlukuohjelmalla
+-Kehityskohteet:
+--Otsikkotasoja voisi muuttaa, sillä ne ovat tällä hetkellä epäjohdonmukaisia (kurssin otsikkotaso on 5 ja tehtyjen sekä tekemättömien tehtävien otsikkotaso 6. Tämän voisi muuttaa esimerkiksi siten, että kurssin otsikkotasoksi voisi laittaa otsikkotasoon2 sekä "Tehdyt tehtävät" ja "Tekemättömät tehtävät" -otsikoiden otsikkotasoksi 3. Samoin muistiinpanon otsikkoa voisi muuttaa siten, että muistiinpanon ollessa aktiivisena otsikkotasolla 4 olevan muistiipanon otsikon voisi siirtää otsikkotasolle 1. Nämä muutokset parantaisivat sovelluksen käytettävyyttä merkittävästi
+-> Sivulle voisi myös tehdä sivun yläreunaan 
+tason 1 otsikon "Aktiiviset kurssit" 
+HUOM: sivulla on nykyisin (28.4.2020) ykköstason otsikko "Aktiiviset kurssit" ja toisen tason otsikko "Kurssilistaus", jotka eivät näy näkeville käyttäjille, koska ne eivät ole heille tarpeellisia käyttöliittymän logiikan ymmärtämiseksi. Sen sijaan ruudunlukuohjelmat näkevät ne, ja ne selkeyttävät sivun hahmottamista näkövammaisen ruudunlukuohjelman käyttäjän näkökulmasta.
+-Ongelmat:
+--Muistiinpanoa avattaessa (Enterin linkon kohdalla) avautuu valintaikkuna, josta muistiinpanoa ei pysty muokkaamaan -> keskeneräisyys on tiedossa.
+--NVDA:lla testattaessa Sulje-painikkeen löytäminen on vaikeaa ja ruudunlukuohjelman käyttäjän kannalta se on aseteltu epäloogisesti sivulle, koska käyttäjän pitää painaa sarkainta muutaman kerran, eikä painike näy NVDA:lla käyttäjälle samassa näkymässä (keskitason saavutettabuusbugi)
+--JAWSilla testattaessa itse muistiinpanon näkymä on selkeämpi (asiat ylhäältä alaspäin: neljännen tason otsikko (muistiinpanon otsikko), ×.painike, muistiinpanon teksti ja Sulje-painike).
+--Aktiiviset kurssit-näkymä samanlainen kuinNVDA:llakin. Ainoa ero on siinä, että ennen muistiinpanon linkkiä on JAWSin mukaan joissakin sivun kohdissa  ylimääräinen linkki, esimerkiksi ennen Koira-muistiinpanoa.
+
+Henkipöllön pesä -sivun tulokset
+-Yleistä:
+--Selkeät otsikointitasot (Henkipöllön pesä otsikkotasolla 1, "Apua opintoihin", "Valistusnurkka" ja "Muuta mielenkiintoista" otsikkotasolla 2). 
+--Kunkin toisen tason otsikon alla on tietoa linkkilistan muodossa (tavallinen <ul>-elementti, jonka sisällä <li>-elementeissä linkkejä), jotka toimivat hyvin (tämä testattu vain NVDA:lla, koska JAWS tunnistaa myös otsikot ja linkit sekä luettelot)
+
+Suoritetut kurssit" -sivun testaustulokset
+-Yleistä::
+--Selkeä näkymä otsikot "Suoritetut kurssit", "Opintopistee yhteensä: 69" ja kurssien otsikot, kuten "Web sovelluskehitys (8p)", jonka alla muistiinpanot-painike
+-Kehityskohteet ja ongelmat:
+--NVDA:
+---Puutteelliset ALT-tekstit, jotka saattavat hämmentää käyttäjää (pieni saavutettavuusongelma) esimerkiksi kuvateksti "images/pollomalli3.0.keltanen" (JAWS)/ pollomalli3.0.keltanen (NVDA) kertoo käyttäjälle, että siinä on keltainen pöllömalli ja sen versio on 3.0. Se paljastaa kuitenkin tietoja, joita käyttäjän ei tulisi tietää,  kuten kansion sijainnin JAWSia käytettäessä (images/kuvan_nimi) ja version kummallakin ruudunlukuohjelmalla. Jos teksti korjattaisin esimerkiksi muotoon "keltainen pöllö", se olisi huomattavasti havainnollisempi. Tällaisia virheitä oli kaikissa sivulla olevissa kuvissa. Tämä ongelma on jo korjattu ja NVDA tunnistaa kuvatekstin "Jokaisen personallisen kurssipöllön kuva". Sen lisäksi se sanoo ennen kuvatekstiä "Napvautettava" ja näyttää siitä kertovan tekstin "nps" (suomen kieltä käytettäessä) pistenäytöllä, mitä JAWS ei tee.
+---Puutteellinen otsikointi: "Opintopisteet yhteensä: 69" -otsikon taso on 5 ja kurssien, kuten "Web-sovelluskehitys 7 p" otsikkotaso on 3. Näitä tulisi muuttaa siten, että ruudunlukuohjelman käyttäjän näkökulmasta katsottuna sivun yläosassa olisi ykköstason otsikko "Suoritetut kurssit", jonka alapuolella olisi otsikko "Opintopistee yhteensä: 69" otsikkotasolla 2. Muiden kurssien otsikkotaso olisi myös 2, koska tällä tavoin ruudunlukuohjelman käyttäjä ymmärtäisi paremmin sivun rakenteen ja pystyisi liikkumaan helpommin eri osien välillä. Myös näkevät käyttäjät hyötyisivät tästä, koska he voisivat näyhdä selkeämmin sivun rakenteen. Tilanne on muuttunut tästä 22.4.2020 mennessä, jolloin otsikko on muodossa "Opintopisteet yhteensä: 13"). Lisäksi muut otsikot ovat muuttuneet: "Tutkimus ja kehittäminen (5p)" (otsikkotaso 3), "Osaajana kehittyminen (5p)" (otsikkotaso 3), "Työasemat (5p)" (otsikkotaso 3) ja "Liiketalousmatematiikka" (Otsikkotaso 3).
+--JAWS:
+---JAWS tunnistaa otsikot NVDA:n tapaan. 22.4.2020 ne olivat seuraavat: "Opintopisteet yhteensä: 13" (otsikkotaso 5), "Tutkimus ja kehittäminen (5p)" (otsikkotaso 3), "Osaajana kehittyminen (5p)" (otsikkotaso 3), "Työasemat (5p)" (otsikkotaso 3) ja "Liiketalousmatematiikka" (Otsikkotaso 3)
+---Jokaisen kurssiotsikon (kolmostason otsikot) alla on "Muistiinpanot"-painike, jonka painaminen pitäisi  todennäköisesti avata muistiinpanon muokkausikkuna, mutta näin ei tapahdu.
+
+
+Asetukset-sivun tulokset
+-Hyvin toimivat asiat:
+--Selkeä otsikointi: tason 1 otsikko Asetukset (Testattu vain NVDA:lla, koska JAWS tunnistaa myös otsikot).
+--Muokkaussäätimien ja askelluspainikkeiden arvoja sekä  valintapainikkeiden ja valintaruutujen tilaa pystyy muuttamaan näppäimistöltä
+-NVDA: 
+--käyttäjä ei tiedä, mihin ryhmään asiat kuuluvat. Todennäköisesti säätimistä puuttuvat label-elementit. Esdimerkiksi seuraavassa näytteessä ruudunlukuohjelman käyttäjä hämmentyy, kun hän ei tiedä "Haluan nähdä pöllöt sovelluksessani" olevan tekstin alla olevan valintaruudun liittyvän kyseiseen tekstiin (keskitason saavutettavuusongelma):
+"Haluan nähdä pöllöt sovelluksessani:
+valintaruutu  valittu
+Kyllä"
+-JAWS:
+--Valintapainikkeiden ja valintaruutujen tekstit ilmoitetaan oikein (kuten "Kyllä Checkbox not ckeckded" (Kyllä valintaruutu ei valittu), mutta ennen ensimmäistä "Kyllä" -painiketta on kaksi nimeämätöntä painiketta (JAWSin ilmoitusten mukaan "Unlabeled 1" ja "Unlabeled 2", mikä hämmentää ruudunlukuohjelman käyttäjää (Kriittinen saavutettavuusongelma).
+--Lisäksi NVDA:n ilmoittamia asetustekstejä, kuten "haluan nähdä pöllöt sovelluksessani:" ei näy lainkaan JAWSia käytettäessä.
+-> korjausehdotus: label-elementit ja fieldset-tagit tulisi lisätä Asetukset-sivulle.
+-Muita huomioita:
+--Askelluspainikkeiden arvoja tulisi vajata siten, että ensimmäinen sallittu opintojen aloitusvuosi olisi järkevämpi (esimerkiksi 1.1.1970) ja suurin mahdollinen arvo meneillään oleva päiväys (kuten 11.3.2020) -> tarvitaan siis päivän, kuukauden ja vuoden korjausken
+
+WAVE-analyysi
+Tein myös saavutettavuusanalyysin Utahin yliopiston WEBAIM-projektin tekemän WAVE-työkalun avulla. Käytössä oli Mozilla Firefoxissa toimivan lisäosan versio 3.04 (julkaistu 15. marraskuuta 2019).
+
+Kalenteri-sivun (päänäkymä) tulokset
+-Yhteenveto: WAVE löysi näkymästä 17 virhettä, 11 ominaisuusasiaa (features) ja 22 hälytystä. Lisäksi sivulla oli 14 rakenteellista elementtiä ja 651 ARIA-tagia. Sivulla ei ollut lainkaan kontrastivirheitä.
+-Valitut yksityiskohdat: 
+--Virheet: Kuvasta puuttuu ALT-teksti (1 kpl), puuttuvat lomakekenttien elementit (10 kpl) ja puuttuvat painiketekstit (3 kkpll)
+--Hälytykset: Vain asettelukäyttöön tarkoitetut taulukot (8 kpl), orvot lomakekentät (<label>-elementtejä ei ole liitetty oikein lomakesäätimiin, 2 kpl), lomakke-elementt, joissa otsikko muttei <label>-elementtiä (9 kpl), puuttuva <fieldset>-tagi (1 kpl) ja yksin oleva otsikkoteksti (1 kpl)
+--Ominaisuusilmoitukset: lomakekentän säätimet (11 kpl)
+--ARIA-elementit: 651 ARIA-elementistä 66:lla on label-elementti
+--Muuta: sivulta puuttuu ykköstason otsikko (keskitason saavutettabuusbugi) ja ARIA-description -elementin tekstit pitäisi suomentaa (kuten teksti "Previous" muotoon "Edellinen") (pieni saavutettavuusbugi)
+
+Aktiiviset kurssit -sivun tulokset
+-Yhteenveto: WAVE löysi sivulta 193 virhettä, 165 hälytystä, yhden ominaisuusasian (features), 69 rakenteellista elementtiä, kolme ARIA-elementtiä ja kolme kontrastivirhettä.
+-Valitut yksityiskohdat:
+--Virheet: puuttuvat lomakesäätimen <label>-elementit (189 kpl), kontrastivirheet (3 kpl, esimerkiksi "Lisää uusi kurssi" -painikkeessa alhainen kontrasti", puuttuva ALT-teksti (2 kpl), puutteellinen tai puuttuva sivun otsikko (1 kpl), linkitetty kuva ilman ALT-tekstiä (1 kpl)
+--Hälytykset: orpoja lomakekenttiä (162 kpl), ykköstason otsikko puuttuu ( 1 kpl), hypätty otsikkotaso (2 kpl, esimerkiksi "Ohjelmointi"-otsikon otsikkotaso 5)
+--Ominaisuusasiat: puutteellinen kielielementti (language element, eri kuin koko sivun lang-elementti)
+--ARIA-elementit: kolmesta ARIA-elementtiä (ARIA-tagi, yksi ARIA label-elementti ja yksi ARIA-expanded -elementti (painikkeen tilaa (laajennettu/kutistettu) kuvaava ARIA-teksti)
+
+Henkipöllön pesä"
+-Yhteenveto: WAVE löysi kaksi virhettä, neljä kontrastivirhettä, yhden hälytyksen, 13 rakenteellista elementtiä, 3 ARIA-elementtiä eikä yhtään omminaisuusilmoitusta 
+-Valitut yksityiskohdat:
+--Virheet: puuttuva ALT-teksti (1 kpl) ja linkitetty kuva, josta puuttuu alt-teksti (1 kpl)
+--Hälytykset: ylihypätty otsikkotaso (1 kpl)
+--ARIA-elementit: aria-tagit ((1kpl), aria-label -elementti (1 kpl) ja aria-expanded-elementti (1 kpl)
+--Muuta: mitäänsanomaton otsikko (title-elementti) eli sivun otsikko "Lintukoto"
+
+Suoritetut kurssit -sivun tulokset
+-Yhteenveto: WAVE löysi sivulta 14 virhettä, 22 kontrastivirhettä, 2 hälytystä, yhden ominaisuusasian, 21 rakenteellista elementtiä sekä 5 ARIA-elementtiä.
+-Valitut yksityiskohdat:
+--Virheet: puuttuva ALT-teksti (13 kpl) ja linkitetty kuva ilman ALT-tekstiä (1 kpl), minkä lisäksi kontrastivirheitä (26 kpl, esimerkiksi erittäin alhainen kontrasti kolmannen tason otsikon "Web sovelluskehitys (5p)" kohdalla)
+--Hälytykset: ensimmäisen otsikkotason hyppäykset (1 kpl) ja ylihypätty otsikkotaso (1 kpl) -> "Suoritetut kurssit" -otsikon otsikkotaso on 3 ja seuraavan "Ohjelmointi"-otsikon otsikkotaso 5
+--Ominaisuusasiat: elementin kieli (element language, 1 kpl, eri kuin koko sivun <html lang>-elementti)
+--ARIA-elementit: ARIA-tagit (2 kpl), aria-label-tagit (1 kpl) , aria hälytys (alert) tai live alue-tagit (1 kpl) ja aria-expanded -tagit (1 kpl)
+
+Asetukset-sivun tulokset
+-Yhteenveto: WAVE löysi sivulta 13 virhettä, yhden kontrastivirheen, yhdeksän hälytystä, yhden ominaisuusasian, seitsemän rakenteellista elementtiä ja 3 ARIA-elementtiä
+--Virheet: puuttuvat lomakesäätimien <label>-elementit (11 kpl), mitäänsanomaton tai puutteellinen otsikko "Lintukoto" (ei kerro esimAsetukset-sivusta mitään) (1 kpl) ja linkitetty kuva, jossa ei ole ALT-tekstiä (1 kpl, todennäköisesti Henkipöllön kuva), minkä lisäksi yksi kontrastivirhe (erittäin alhainen kontrasti"Tallenna"-painikkeessa)
+--Hälytykset: orpoja lomakekenttiä (7 kpl, esimerkiksi "opintojaksojen aloituspäivä" -tekstin jälkeen on tyhjä lomakekentän säädin eli askelluspainike (SpinBox)), puuttuva <fieldset>-tagi (1 kpl, ennen radiopainiketta, jonka teksti on "Mihin aikaan vain") ja ylihypätty otsikkotaso (1 kpl)
+--Ominaisuusasiat: elementin kieli (1 kpl), painike, jossa on kuva eikä kuvaustekstiä -> voi olla Angular-koodin tuloksena syntyvän www-sivun ongelma
+--ARIA-elementit: ARIA-tagit (1 kpl), ARIA-label -elementti (1 kpl, kertoo ruudunlukuohjelmalle elementin tarkoituksen), ARIA-expanded-elementti (1 kpl)
+
+
+Kirjautumissivun tulokset
+-Yhteenveto: WAVE löysi sivulta kolme virhettä, yhden kontrastivirheen, kolme hälytystä, yhden ominaisuusasian (feature), seitsemän rakenteellista elementtiä ja neljä aria-elementtejä
+-Valitut yksityiskohdat:
+--Virheet: linkitetty kuva, jossa ei ole ALT-tekstiä (todennäköisesti Henkipöllön ikoni) (1 kpl) ja lomakekentistä puuttuva label-elementti (2 kpl), minkä lisäksi erittäin alhainen kontrasti (1 kpl, kyseessä "Lähetä"-painike)
+--Hälytykset: kaksi orpoa lomakekentän label-elementtiä ("Käyttäjätunnus" ja "Salasana") ja ylihypätty otsikkotaso (1 kpl -> "Kirjaudu sisään"-otsikon otsikkotaso on 2, kun sen pitäisi olla tasolla 1)
+--Ominaisuusasiat: Kuva, josta puuttuu ALT-teksti (1 kpl)
+--ARIA-elementit (4 kpl): ARIA (1 kpl), ARIAlabel (1 kpl), ARIAtabindex (1 kpl) ja ARIAexpanded (1 kpl)
+
+Loppuyhteenveto
+Kokonaisuudessaan voidaan todeta, että Lintukoto ei ole vielä täysin saavutettava ja sitä tulisi kehittää WCAG 2.1:n mukaisesti saaavutattavammaksi. Parannettavaa on erityisesti label-elementtien nimeämisen parantamisessa. Omat havaintoni ja WAVE-analyysi täydentävät hyvin toisiaan; Siinä, missä kerroin esimerkiksi Kalenteri-sivun ongelmista sanallisesti ja näytteiden avulla sekavuudesta tehtävänäkymässä (ToDo), WAVE-analyysi osoitti, että sivulla oli omien havaintojeni asettelukäyttöön tarkoitettujen taulukoiden - lisäksi muita virheitä, kuten ylihypätty otsikkotaso ja paljon ARIA-elementtejä. Kokonaisuudessaan testaus oli erittäin kannattavaa tällä menetelmällä, vaikkei minulla ollut virallista testisuunnitelmaa, joka olisi kannattanut tehdä ennen testien aloittamista. Testimenetelmän täsmällisyydestää kertoo kuitenkin se, että löysin 46 ohjelmistovirhettä, joista 45 kolmannen sprintin (9.3-20.3.2020) ja yhdenneljännen sprintin (23.3-3.4.2020) aikana. Näistä 19 on ollut merkittävää (Major), 23 pientä (Minor) ja neljä ominaisuutta (Feature). Sen perusteella voidaan päätellä, että testaus on ollut laadukasta, mutta ohjelmistossa on ollut paljon saavutettavuusvirheitä.
