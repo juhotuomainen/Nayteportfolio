@@ -1,11 +1,11 @@
 # Väliportfolio, Juho 
 ## Tekijän tiedot:
-- Nimi: Tuomainen 
+- Nimi: Juho Tuomainen 
 - Koulutusohjelma: Tietojenkäsittely
 - Koulutusala: Liiketalouden ala
 - Tutkintonimeke: Tradenomi (AMK)
 ## Lyhyt kuvaus portfolion sisällöstä
-Tämä portfolio sisältää tärkeimmät asiat, jotka olen oppinut syksyyn 2020 mennessä opiskellessani Tietojenkäsittelyn koulutusohjelmassa Jyväskylän ammattikorkeakoulussa. Se sisältää seuraavat asiat:
+Tämä portfolio sisältää tärkeimmät asiat, jotka olen oppinut syksyyn 2020 mennessä opiskellessani Tietojenkäsittelyn koulutusohjelmassa Jyväskylän ammattikorkeakoulussa. Huomautus: Käyttääksesi näitä ohjelmia asenna ensin Git-varasto (repository) omalle koneellesi kirjoittamalla git-komentokehotteeseen seuraava komento ilman lainausmerkkejä: "git clone https://github.com/juhotuomainen/Valiportfolio.git". Asenna sitten Node-moduulit eli ohjelmistot; Kirjoita komentokehotteessa (kuten Windowsin komentokehotteessa) kirjoittamalla seuraava komento ilman lainausmerkkejä: "npm install", joks asentaa ne. Voit poistaa ohjelmien moduulit kirjoittamalla "npm uninstall" ja poistaa sitten portfolion koneelta poistamalla kaikki kansiot ja tiedostot. Portfolio sisältää seuraavat asiat:
 - arvauspeli: Ohjelmoinnin perusteet-kurssilla tekemäni, yksinkertainen JavaScript-peli. Tarvitset sen pelaamiseen Noden (testattu versiolla 10.16.3) ja readline-syncin (testattu versiolla 1.4.10)
 - socket_io_web_sovelluskehitys: Yksinkertainen, Socket.io -protokollaa käyttävä arvauspeli. Pelin toimintalogiikka ja -ajatus on sama kuin arvauspelissä, mutta se on muutettu monen henkilön pelattavaksi. Huom! Pelissä ei ole turvallisuusominaisuuksia, koska se on tehtyvain testikäyttöön. Tarvitset pelin pelaamiseen Node JS:n (testattu Windows-versiolla 10.16.3) ja socket-io -kirjaston (testattu versiolla 2.0.3).
 - Testaus: Sisältää Ticorprrate Demo Lab -opintojaksolla tekemäni testausdokumentit, koten sprinttikohtaisen testaussuunnitelman ja saavutettavuustestaussuunnitelman sekä Lintukoto-sovelluksen saavutettavuustestausraportin.
