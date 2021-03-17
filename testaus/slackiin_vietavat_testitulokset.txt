@@ -1,0 +1,171 @@
+Note for English-speaking users: This is a Finnish-language version in some parts because the clurse language was decided to be Finnish in the first meeting of the course. However, the results should be clear (results were successful and the integration to the Slack failed). This was made locally on the computer.
+
+Onnistuneen käännöksen tiedot (Slackiin integrointi siis epäonnistui...)
+localhost:8080/#
+Success
+80%
+Armour Nightly Build
+10 hr - 
+#11
+
+Käännöksen tarkemmat tiedot:
+ Käännös #11 (17.12.2020 1:58:00) 
+Lisää kuvaus
+No changes.
+Started by timer
+Revision: 3285ecbab61160cb871016efebaace1c6e21336c 
+luettelo jossa 1 kohdetta
+• refs/remotes/origin/master
+luettelon loppu
+Test Result
+ (ei virheitä)
+
+Käännöksen yhteenveto:
+Huomautus: viiva tarkoittaa, ettei kyseisessä taulukon sarakkeessa ole mitään tietoja. Tämä taulukko on muokattu käännöksen raportista ja tuloksista.
+Package / Kesto / Epäonnistui / (muutos) / Ohitettiin / (muutos) / Pass / (muutos) / Yhteensä /(muutos)
+ArmourTester / 0,12 sec / 0 / - / 0 / - / 2 / - / 2 / -
+taulukon loppu
+Testin tulokset
+Kaikki testit -näkymä (samanlainen taulukko kuin yhteenveto-kohdassakin:
+Class / Kesto / Epäonnistui / (muutos) / Ohitettiin / (muutos) / Pass / (muutos) / Yhteensä /(muutos)
+ArmourTester / 0,12 sec / 0 / - / 0 / - / 2 / - / 2 / -
+
+Konsolin tuloste: 
+Started by timer
+Running as SYSTEM
+Building in workspace C:\Users\Juho\.jenkins\workspace\Armour Nightly Build
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url 
+https://github.com/juhotuomainen/Testing2018.git
+ # timeout=10
+Fetching upstream changes from 
+https://github.com/juhotuomainen/Testing2018.git
+
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.23.0.windows.1'
+ > git.exe fetch --tags --force --progress -- 
+https://github.com/juhotuomainen/Testing2018.git
+ +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+Checking out Revision 3285ecbab61160cb871016efebaace1c6e21336c (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 3285ecbab61160cb871016efebaace1c6e21336c # timeout=10
+Commit message: "Nyt ei virheitä tule. Virhe oli se, että program.cs:ssä oli Armour-luokan konstruktorikutsu ilman parametreja."
+ > git.exe rev-list --no-walk 3285ecbab61160cb871016efebaace1c6e21336c # timeout=10
+[Armour Nightly Build] $ cmd /c call C:\Users\Juho\AppData\Local\Temp\jenkins2600641080778456633.bat
+
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build>nuget.exe restore "Testing2018.sln" 
+MSBuild auto-detection: using msbuild version '15.8.169.51996' from 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\bin'.
+All packages listed in packages.config are already installed.
+
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build>exit 0 
+Path To MSBuild.exe: C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
+Executing the command cmd.exe /C " chcp 1252 & C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe Testing2018.sln " && exit %%ERRORLEVEL%% from
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build
+[Armour Nightly Build] $ cmd.exe /C " chcp 1252 & C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe Testing2018.sln " && exit %%ERRORLEVEL%%
+Active code page: 1252
+Microsoft (R) Build Engine -versio 4.8.3752.0
+[Microsoft .NET Framework, versio 4.0.30319.42000]
+Copyright (C) Microsoft Corporation. Kaikki oikeudet pidätetään.
+
+Muodostetaan projekteja tässä ratkaisussa yksi kerrallaan. Jos haluat ottaa käyttöön rinnakkaisen muodostuksen, lisää /m-valitsin.
+Koonti aloitettu 17.12.2020 1.58.05.
+Projekti C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018.sln solmussa 1 (oletuskohteet).
+ValidateSolutionConfiguration:
+  Kootaan ratkaisukokoonpano Debug|Any CPU.
+Projekti C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018.sln (1) luo kohdetta C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018\Testing2018.csproj
+(2) solmussa 1 (oletuskohteet).
+Projektitiedosto sisältää arvon ToolsVersion="15.0". Tämä työkaluryhmä saattaa puuttua tai olla tuntematon, missä tapauksessa voit kokeilla ratkaista ongelman
+asentamalla tarvittavan MSBuild-version, tai koontiversio on pakotettu käyttämään tiettyä ToolsVersion-versiota käytäntösyistä. Projektia käsitellään käyttäen
+arvoa ToolsVersion="4.0". Lisätietoja on osoitteessa 
+http://go.microsoft.com/fwlink/?LinkId=291333.
+GenerateTargetFrameworkMonikerAttribute:
+Kohde
+GenerateTargetFrameworkMonikerAttribute ohitetaan, koska kaikki kohdetiedostot ovat syötetiedostojensa mukaisia.
+CoreCompile:
+Kohde CoreCompile ohitetaan, koska kaikki kohdetiedostot ovat syötetiedostojensa mukaisia.
+_CopyAppConfigFile:
+Kohde _CopyAppConfigFile ohitetaan, koska kaikki kohdetiedostot ovat syötetiedostojensa mukaisia.
+CopyFilesToOutputDirectory:
+  Testing2018 -> C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018\bin\Debug\Testing2018.exe
+Projektin C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018\Testing2018.csproj koonti on valmis (oletuskohteet).
+Projekti C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018.sln (1) luo kohdetta C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\ArmourTester\ArmourTester.csproj
+(3) solmussa 1 (oletuskohteet).
+Projektitiedosto sisältää arvon ToolsVersion="15.0". Tämä työkaluryhmä saattaa puuttua tai olla tuntematon, missä tapauksessa voit kokeilla ratkaista ongelman
+asentamalla tarvittavan MSBuild-version, tai koontiversio on pakotettu käyttämään tiettyä ToolsVersion-versiota käytäntösyistä. Projektia käsitellään käyttäen
+arvoa ToolsVersion="4.0". Lisätietoja on osoitteessa 
+http://go.microsoft.com/fwlink/?LinkId=291333.
+Projekti
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\ArmourTester\ArmourTester.csproj (3) luo kohdetta C:\Users\Juho\.jenkins\workspace\Armour Nightly
+Build\Testing2018\Testing2018.csproj (2:3) solmussa 1 (GetNativeManifest kohde(tta)).
+Projektitiedosto sisältää arvon ToolsVersion="15.0". Tämä työkaluryhmä saattaa puuttua tai olla tuntematon, missä tapauksessa voit kokeilla ratkaista ongelman
+asentamalla tarvittavan MSBuild-version, tai koontiversio on pakotettu käyttämään tiettyä ToolsVersion-versiota käytäntösyistä. Projektia käsitellään käyttäen
+arvoa ToolsVersion="4.0". Lisätietoja on osoitteessa 
+http://go.microsoft.com/fwlink/?LinkId=291333.
+Projektin
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018\Testing2018.csproj koonti on valmis (GetNativeManifest kohde(tta)).
+GenerateTargetFrameworkMonikerAttribute:
+Kohde GenerateTargetFrameworkMonikerAttribute ohitetaan, koska kaikki kohdetiedostot ovat syötetiedostojensa mukaisia.
+CoreCompile:
+Kohde CoreCompile ohitetaan, koska kaikki kohdetiedostot ovat syötetiedostojensa mukaisia.
+_CopyOutOfDateSourceItemsToOutputDirectory:
+Kohde _CopyOutOfDateSourceItemsToOutputDirectory ohitetaan, koska kaikki kohdetiedostot ovat syötetiedostojensa mukaisia.
+CopyFilesToOutputDirectory:
+  ArmourTester -> C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\ArmourTester\bin\Debug\ArmourTester.dll
+Projektin C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\ArmourTester\ArmourTester.csproj koonti on valmis (oletuskohteet).
+Projektin C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\Testing2018.sln koonti on valmis (oletuskohteet).
+
+Koonti onnistui.
+    0 varoitus(ta)
+    Virheitä 0
+
+Aikaa kulunut 00:00:00.31
+[Armour Nightly Build] $ cmd /c call C:\Users\Juho\AppData\Local\Temp\jenkins1276535378393014235.bat
+
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build>"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
+ArmourTester\bin\Debug\ArmourTester.dll /logger:trx;LogFileName=TestResult.trx 
+Microsoft (R) Test Execution Command Line Tool Version 15.8.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+Passed   TestLevel1
+Passed   TestSlot1
+WARNING: Overwriting results file: C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\TestResults\TestResult.trx
+Results File: C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\TestResults\TestResult.trx
+
+Total tests: 2. Passed: 2. Failed: 0. Skipped: 0.
+Test Run Successful.
+Test execution time: 0,6269 Seconds
+
+C:\Users\Juho\.jenkins\workspace\Armour Nightly Build>exit 0 
+[MSTEST-PLUGIN] INFO processing test results in file(s) TestResults\TestResult.trx
+[MSTEST-PLUGIN] INFO processing report file: C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\TestResults\TestResult.trx
+[MSTEST-PLUGIN] WARNING Unable to delete the file C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\temporary-junit-reports
+[MSTEST-PLUGIN] INFO This file is a reserved temporary file. You can delete it safely.
+[MSTEST-PLUGIN] INFO XML coverage report file not found: C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\TestResults\vstest.coveragexml
+
+[MSTEST-PLUGIN] INFO XML coverage report file not found: C:\Users\Juho\.jenkins\workspace\Armour Nightly Build\TestResults\TestResult.coveragexml
+
+[Slack Notifications] found #10 as previous completed, non-aborted build
+[Slack Notifications] will send OnSuccessNotification because build matches and user preferences allow it
+ERROR: Build step failed with exception
+java.lang.IllegalArgumentException: Project Channel or Slack User ID must be specified.
+	at jenkins.plugins.slack.StandardSlackService.<init>(StandardSlackService.java:140)
+	at jenkins.plugins.slack.SlackNotifier.newSlackService(SlackNotifier.java:592)
+	at jenkins.plugins.slack.SlackNotifier.lambda$slackFactory$0(SlackNotifier.java:623)
+	at jenkins.plugins.slack.ActiveNotifier.completed(ActiveNotifier.java:130)
+	at jenkins.plugins.slack.SlackNotifier.perform(SlackNotifier.java:607)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:804)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:753)
+	at hudson.model.Build$BuildExecution.cleanUp(Build.java:187)
+	at hudson.model.Run.execute(Run.java:1954)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:43)
+	at hudson.model.ResourceController.execute(ResourceController.java:97)
+	at hudson.model.Executor.run(Executor.java:429)
+Build step 'Slack Notifications' marked build as failure
+Finished: SUCCESS
+
