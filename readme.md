@@ -16,5 +16,6 @@ Tämä portfolio sisältää tärkeimmät asiat, jotka olen oppinut kevääseen 
 
 Lisäksi tässä tiedostossa on ![Linkki Lintukoto-sovelluksen varastoon](https://github.com/juhotuomainen/Ticorporate_git.git). Sovellus tehtiin keväällä 2020 Ticorporate Demo Lab -opintojaksolla. Toimin projektissa koodarina ja saavutettavuustestaajana ja löysin kaiken kaikkiaan 46 saavutettavuusbugia, joista noin 6 oli samoja eli dublikaatteja.
 
+Olen myös tehnyt ![opinnäytetyön näkövammaisten tietoteknisistä apuvälineistä Suomessa](https://www.theseus.fi/bitstream/handle/10024/494484/Opinnaytetyo_Tuomainen_Juho.pdf?sequence=2&isAllowed=y). Opinnäytetyö on ladattavissa Theseus-opinnäytetyötietokannasta.
 ## Yksinkertainen lisenssi
 ET SAA kopioida, levittää tai muuttaa tätä sisältöä. Jos olet kuitenkin JAMK:n Tietojenkäsittelyn koulutusohjelmassa opettava opettaja, voit arvioida ja muokata tätä portfoliota. Kaikki muut muutokset opettajan tai tekijän itsensä tekemiä muutoksia lukuun ottamatta on kielletty. Tekijänoikeudet (c) 2020- Juho Tuomainen.

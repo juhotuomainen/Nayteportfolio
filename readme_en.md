@@ -8,5 +8,6 @@ This portfolio contains all the learnings I have made to date (Spring 2021) to t
 
 In addition to these files, this repository has a ![link to the repository of Lintukoto application (In Finnish Only)](https://github.com/juhotuomainen/Ticorporate_git.git). It was made during the course Ticorporate Demo Lab in sping 2020. I worked there as coder and accessibility tester. All in all, I found 46 bugs, about six of which were the same (i.e. dublicates).
 
+I Also did a ![thesis about the assistive technologies in Finland in Finnish language](https://www.theseus.fi/bitstream/handle/10024/494484/Opinnaytetyo_Tuomainen_Juho.pdf?sequence=2&isAllowed=y). It can be downloaded from the thesis database Theseus.
 ## License
 Please DO NOT copy, modify or distribute this content. If you are a teacher at JAMK University of Applied Sciences, teaching Business Information Technology, then you can evaluate this portfolio. All other modification except this and the modifications made by the author are prohibited. Copyright (C) 2020- Juho Tuomainen. You can, however, link freely to this portfolio if you want.
